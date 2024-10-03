@@ -1,4 +1,4 @@
-name: "Terraform action"
+name: "terraform remote backend"
 on:
   push:
     branches:
