@@ -15,7 +15,7 @@ data "template_file" "todo_app" {
     DATABASE_PORT     = 3306
     DATABASE_NAME     = "demodb"
     DATABASE_USER     = "root"
-    DATABASE_PASSWORD = "password" # In production, you should use secret manager to store the password
+    DATABASE_PASSWORD = "TfWorkshopPassw0rd" # In production, you should use secret manager to store the password
   }
 }
 
