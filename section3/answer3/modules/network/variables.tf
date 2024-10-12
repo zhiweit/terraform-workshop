@@ -5,5 +5,5 @@ variable "prefix" {
 
 variable "tf_workshop_ex3_vpc_id" {
   description = "The ID of the VPC for Exercise 3"
-  default     = ["vpc-0f4d49126323c6e56"]
+  default     = "vpc-0f4d49126323c6e56"
 }

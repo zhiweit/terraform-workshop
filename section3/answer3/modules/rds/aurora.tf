@@ -7,16 +7,6 @@ variable "applications" {
     db_name    = string
     identifier = string
   }))
-  default = {
-    "nestjs" = {
-      db_name    = "${var.prefix}_demodb_nestjs"
-      identifier = "nestjs-terraform-workshop-db"
-    },
-    "springboot" = {
-      db_name    = "${var.prefix}_demodb_springboot"
-      identifier = "springboot-terraform-workshop-db"
-    }
-  }
 }
 
 # This deploys a NestJS and a Springboot Database Instance
@@ -47,8 +37,8 @@ resource "aws_db_instance" "db_instance" {
 resource "aws_db_subnet_group" "db_subnet_group" {
   name = "db-subnet-group"
   subnet_ids = [
-    aws_subnet.public_subnet_1.id,
-    aws_subnet.public_subnet_2.id
+    var.tf_workshop_ex3_private_subnet_1_id,
+    var.tf_workshop_ex3_private_subnet_2_id
   ]
 
   tags = {
