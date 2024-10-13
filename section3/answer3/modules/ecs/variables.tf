@@ -4,8 +4,9 @@ variable "prefix" {
 }
 
 variable "public_subnet_ids" {
+  type        = list(string)
   description = "List of public subnet ids"
-  default = [ "subnet-0030e65ee7c549f5d", "subnet-0dd39de08e95d80a6" ]
+  default     = ["subnet-0030e65ee7c549f5d", "subnet-0dd39de08e95d80a6"]
 }
 
 variable "ecs_tasks_sg_ids" {
@@ -23,12 +24,8 @@ variable "vpc_id" {
   description = "VPC's id"
 }
 
-variable "az_count" {
-  description = "Number of AZs to cover in a given region"
-  default     = "2"
-}
-
 variable "aws_region" {
+  type        = string
   description = "The region to deploy your apps to"
   default     = "ap-southeast-1" # Singapore
 }
@@ -46,11 +43,13 @@ variable "springboot_app_image" {
 }
 
 variable "app_count" {
+  type        = number
   description = "Number of docker containers to run"
   default     = 3
 }
 
 variable "app_port" {
+  type        = number
   description = "The port your app listens to"
   default     = 3000
 }
@@ -81,4 +80,19 @@ variable "nestjs_db_endpoint" {
 variable "springboot_db_endpoint" {
   type        = string
   description = "Endpoint of your Spring Boot DB writer instance"
+}
+
+variable "database_name" {
+  type        = string
+  description = "Name of the database"
+}
+
+variable "database_username" {
+  type        = string
+  description = "Username to connect to the database"
+}
+
+variable "database_password" {
+  type        = string
+  description = "Password to connect to the database"
 }

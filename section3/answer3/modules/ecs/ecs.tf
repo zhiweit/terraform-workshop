@@ -9,19 +9,21 @@ resource "aws_ecs_task_definition" "nestjs_app" {
   requires_compatibilities = ["FARGATE"]
   cpu                      = var.fargate_cpu
   memory                   = var.fargate_memory
+
+  # The container_definitions field is a JSON string that defines the container(s) to run in the task
   container_definitions = templatefile("./templates/ecs/todo_app.json.tpl", {
-    app_image           = var.nestjs_app_image
-    app_port            = var.app_port
-    fargate_cpu         = var.fargate_cpu
-    fargate_memory      = var.fargate_memory
-    aws_region          = var.aws_region
-    DATABASE_HOST       = var.nestjs_db_endpoint
-    DATABASE_PORT       = 3306
-    DATABASE_NAME       = "demodb"
-    DATABASE_USER       = "root"
-    DATABASE_PASSWORD   = "TerraformRocksPa33W0rd!"  # In production, you should use secret manager to store the password
+    app_image         = var.nestjs_app_image
+    app_port          = var.app_port
+    fargate_cpu       = var.fargate_cpu
+    fargate_memory    = var.fargate_memory
+    aws_region        = var.aws_region
+    DATABASE_HOST     = var.nestjs_db_endpoint
+    DATABASE_PORT     = 3306
+    DATABASE_NAME     = var.database_name
+    DATABASE_USER     = var.database_username
+    DATABASE_PASSWORD = var.database_password
   })
-  depends_on               = [aws_iam_role_policy_attachment.task_execution_role_policy_attachment]
+  depends_on = [aws_iam_role_policy_attachment.task_execution_role_policy_attachment]
 }
 
 resource "aws_ecs_service" "nestjs_main" {
@@ -47,8 +49,6 @@ resource "aws_ecs_service" "nestjs_main" {
 }
 
 
-
-
 resource "aws_ecs_cluster" "springboot_main" {
   name = "${var.prefix}-springboot-cluster"
 }
@@ -60,19 +60,21 @@ resource "aws_ecs_task_definition" "springboot_app" {
   requires_compatibilities = ["FARGATE"]
   cpu                      = var.fargate_cpu
   memory                   = var.fargate_memory
+
+  # The container_definitions field is a JSON string that defines the container(s) to run in the task
   container_definitions = templatefile("./templates/ecs/todo_app.json.tpl", {
-    app_image           = var.springboot_app_image
-    app_port            = var.app_port
-    fargate_cpu         = var.fargate_cpu
-    fargate_memory      = var.fargate_memory
-    aws_region          = var.aws_region
-    DATABASE_HOST       = var.springboot_db_endpoint
-    DATABASE_PORT       = 3306
-    DATABASE_NAME       = "demodb"
-    DATABASE_USER       = "root"
-    DATABASE_PASSWORD   = "TerraformRocksPa33W0rd!"  # In production, you should use secret manager to store the password
+    app_image         = var.springboot_app_image
+    app_port          = var.app_port
+    fargate_cpu       = var.fargate_cpu
+    fargate_memory    = var.fargate_memory
+    aws_region        = var.aws_region
+    DATABASE_HOST     = var.springboot_db_endpoint
+    DATABASE_PORT     = 3306
+    DATABASE_NAME     = var.database_name
+    DATABASE_USER     = var.database_username
+    DATABASE_PASSWORD = var.database_password
   })
-  depends_on               = [aws_iam_role_policy_attachment.task_execution_role_policy_attachment]
+  depends_on = [aws_iam_role_policy_attachment.task_execution_role_policy_attachment]
 }
 
 resource "aws_ecs_service" "springboot_main" {

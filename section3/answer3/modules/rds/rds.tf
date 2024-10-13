@@ -13,15 +13,16 @@ variable "applications" {
 resource "aws_db_instance" "db_instance" {
   for_each = var.applications # iterate over the map
 
-  allocated_storage               = 10
-  storage_type                    = "gp2"
-  engine                          = "mysql"
-  engine_version                  = "8.0.36"
-  instance_class                  = "db.t3.micro"
-  db_name                         = each.value.db_name    # takes value from the map
-  identifier                      = each.value.identifier # takes value from the map
-  username                        = "root"
-  password                        = var.tf_workshop_ex3_db_password
+  allocated_storage = 10
+  storage_type      = "gp2"
+  engine            = "mysql"
+  engine_version    = "8.0.36"
+  instance_class    = "db.t3.micro"
+
+  identifier                      = "${var.prefix}${each.value.identifier}" # takes value from the map
+  db_name                         = var.database_name
+  username                        = var.database_username
+  password                        = var.database_password
   parameter_group_name            = "default.mysql8.0"
   skip_final_snapshot             = true
   vpc_security_group_ids          = [var.security_group_id]
