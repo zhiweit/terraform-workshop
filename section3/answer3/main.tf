@@ -20,11 +20,9 @@ module "rds" {
 
   applications = {
     "nestjs" = {
-      db_name    = "${local.prefix}${var.tf_workshop_ex3_database_name}"
       identifier = "${local.prefix}-nestjs-terraform-workshop-db"
     },
     "springboot" = {
-      db_name    = "${local.prefix}${var.tf_workshop_ex3_database_name}"
       identifier = "${local.prefix}-springboot-terraform-workshop-db"
     }
   }

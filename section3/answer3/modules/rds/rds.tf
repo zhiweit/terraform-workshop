@@ -4,7 +4,6 @@
 # "demodb_springboot" and "springboot-terraform-workshop-db" for "springboot".
 variable "applications" {
   type = map(object({
-    db_name    = string
     identifier = string
   }))
 }
