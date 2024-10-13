@@ -19,7 +19,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./secition3/terraform
+        working-directory: ./section3/answer3 # temporarily pointing to answer3
     steps:
       - name: Git checkout
         uses: actions/checkout@v4
