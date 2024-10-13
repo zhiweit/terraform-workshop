@@ -18,7 +18,7 @@ resource "aws_db_instance" "db_instance" {
   engine_version    = "8.0.36"
   instance_class    = "db.t3.micro"
 
-  identifier                      = "${var.prefix}${each.value.identifier}" # takes value from the map
+  identifier                      = "${each.value.identifier}" # takes value from the map
   db_name                         = var.database_name
   username                        = var.database_username
   password                        = var.database_password

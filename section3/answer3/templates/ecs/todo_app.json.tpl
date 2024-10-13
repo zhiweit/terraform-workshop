@@ -15,7 +15,7 @@
     "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
-          "awslogs-group": "/ecs/todo-app",
+          "awslogs-group": "${log_group}",
           "awslogs-region": "${aws_region}",
           "awslogs-stream-prefix": "ecs"
         }

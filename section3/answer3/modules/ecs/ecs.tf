@@ -17,6 +17,7 @@ resource "aws_ecs_task_definition" "nestjs_app" {
     fargate_cpu       = var.fargate_cpu
     fargate_memory    = var.fargate_memory
     aws_region        = var.aws_region
+    log_group         = aws_cloudwatch_log_group.nestjs_log_group.name
     DATABASE_HOST     = var.nestjs_db_endpoint
     DATABASE_PORT     = 3306
     DATABASE_NAME     = var.database_name
@@ -68,6 +69,7 @@ resource "aws_ecs_task_definition" "springboot_app" {
     fargate_cpu       = var.fargate_cpu
     fargate_memory    = var.fargate_memory
     aws_region        = var.aws_region
+    log_group         = aws_cloudwatch_log_group.springboot_log_group.name
     DATABASE_HOST     = var.springboot_db_endpoint
     DATABASE_PORT     = 3306
     DATABASE_NAME     = var.database_name
