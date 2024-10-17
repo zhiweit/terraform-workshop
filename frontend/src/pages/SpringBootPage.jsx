@@ -5,7 +5,7 @@ import ConfirmationModal from '../components/ConfirmationModal';
 import { getUsers, addUser, deleteUser } from '../api';
 
 function SpringBootPage() {
-	const API_BASE_URL = `http://${import.meta.env.VITE_SPRINGBOOT_EC2_ADDRESS}/api/v1`;
+	const API_BASE_URL = `http://${import.meta.env.VITE_ALB_ADDRESS}/springboot/api/v1`;
 
 	const [users, setUsers] = useState([]);
 	const [selectedUser, setSelectedUser] = useState(null);
