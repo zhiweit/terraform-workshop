@@ -2,7 +2,7 @@
 resource "aws_instance" "app_server" {
   # specify arguments here
   ami           = "ami-0ad522a4a529e7aa8" # EC2 AMI image
-  instance_type = "t3.small"              # EC2 Instance Type
+  instance_type = "t3.small"              # EC2 Instance Type 
 
   associate_public_ip_address = true
   subnet_id                   = var.tf_workshop_ex1_subnet_id
