@@ -110,4 +110,4 @@ jobs:
         # only apply upon push to main branch
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -auto-approve -input=false -var="student_id=${{ secrets.STUDENT_ID }}"
+        run: terraform apply -auto-approve -input=false -var student_id=${{ secrets.STUDENT_ID }}
